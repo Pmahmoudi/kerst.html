@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,14 +12,14 @@
         position: absolute;
         top: 50px;
         left: 50px;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translateX(0%) translateY(0%);
         box-shadow: 0 0 10px 0 #999;
     }
     </style>
     <script type="text/javascript">
         function init () {
             var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
+            var ctx = canvas.getContext('2d');
             var w = canvas.width;
             var h = canvas.height;
 
@@ -32,33 +33,31 @@
                 ctx.drawImage(bg, 0, 0);
                 addFlake();
                 snow();
-            };
+            }
             function addFlake () {
                 var x = Math.ceil(Math.random() * w);
                 var s = Math.ceil(Math.random() *4);
                 flakes.push({"x": x, "y": 0,"s": s});
-            };
+            }
             function  snow () {
                 for (var i = 0; i < flakes.length; i++){
                     var flake = flakes[i];
                     ctx.beginPath();
-                    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+                    ctx.fillStyle = "rgba( 255, 255, 255, 0.7)";
                     ctx.arc(flake.x, flakes[i].y+=flake.s/2, flake.s/2, 0, 2 * Math.PI);
                     ctx.fill();
                     if(flakes[i].y>h){
                         flakes.splice(i, 1);
                     }
-                };
-
-            };
-
-            setInterval(snowfall, 20);
-        };
-
+                }
+            }
+            setInterval(snowfall, 15);
+        }
         window.onload = init;
         </script>
 </head>
 <body>
+<audio src="jingo.mp3"autoplay></audio>
         <canvas id="canvas" width="778" height="387">
                 </canvas>
 </body>
